@@ -4,7 +4,14 @@ import shutil
 import os
 from ingest import extract_text_from_pdf, split_into_chunks, build_faiss_index
 from chain import ask
+from fastapi.middleware.cors import CORSMiddleware
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app = FastAPI()
 
 os.makedirs("uploads", exist_ok=True)
